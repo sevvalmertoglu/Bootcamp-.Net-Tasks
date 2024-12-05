@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using Week1_SRP.GoodExample;
 class Program
 {
     static void Main(string[] args)
@@ -7,7 +8,7 @@ class Program
         IEmailService emailService = new EmailService();
 
         // Order_Service
-        Order_Service orderService = new Order_Service(orderRepository, emailService);
+        OrderService orderService = new OrderService(orderRepository, emailService);
         orderService.AddOrder("Order details for product XYZ", "customer@example.com");
     }
 }

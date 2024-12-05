@@ -1,48 +1,51 @@
-public class Order_Service
+namespace Week1_SRP.GoodExample
 {
-    private readonly IOrderRepository _orderRepository;
-    private readonly IEmailService _emailService;
-
-    public Order_Service(IOrderRepository orderRepository, IEmailService emailService)
+    public class OrderService
     {
-        _orderRepository = orderRepository;
-        _emailService = emailService;
+        private readonly IOrderRepository _orderRepository;
+        private readonly IEmailService _emailService;
+
+        public OrderService(IOrderRepository orderRepository, IEmailService emailService)
+        {
+            _orderRepository = orderRepository;
+            _emailService = emailService;
+        }
+
+        public void AddOrder(string orderDetails, string customerEmail)
+        {
+            Console.WriteLine("Order added: " + orderDetails);
+
+            _orderRepository.Save(orderDetails);
+
+            _emailService.SendEmail(customerEmail, "Your order has been successfully placed!");
+        }
     }
 
-    public void AddOrder(string orderDetails, string customerEmail)
+    // Veritabanı işlemleri
+    public interface IOrderRepository
     {
-        Console.WriteLine("Order added: " + orderDetails);
-
-        _orderRepository.Save(orderDetails);
-
-        _emailService.SendEmail(customerEmail, "Your order has been successfully placed!");
+        void Save(string orderDetails);
     }
-}
 
-// Veritabanı işlemleri
-public interface IOrderRepository
-{
-    void Save(string orderDetails);
-}
-
-public class OrderRepository : IOrderRepository
-{
-    public void Save(string orderDetails)
+    public class OrderRepository : IOrderRepository
     {
-        Console.WriteLine("Order saved to database: " + orderDetails);
+        public void Save(string orderDetails)
+        {
+            Console.WriteLine("Order saved to database: " + orderDetails);
+        }
     }
-}
 
-// E-posta işlemleri
-public interface IEmailService
-{
-    void SendEmail(string email, string message);
-}
-
-public class EmailService : IEmailService
-{
-    public void SendEmail(string email, string message)
+    // E-posta işlemleri
+    public interface IEmailService
     {
-        Console.WriteLine($"Email sent to {email}: {message}");
+        void SendEmail(string email, string message);
+    }
+
+    public class EmailService : IEmailService
+    {
+        public void SendEmail(string email, string message)
+        {
+            Console.WriteLine($"Email sent to {email}: {message}");
+        }
     }
 }
