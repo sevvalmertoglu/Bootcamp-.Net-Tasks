@@ -11,12 +11,7 @@ Bu proje, temel bir Kütüphane Yönetim Sistemi web uygulamasıdır. Kitaplarla
 
 ## Kullanılan Teknolojiler ve Mimari
 - Backend: ASP.NET Core
-- Veritabanı: SQLite
-- ORM: Entity Framework Core
-- Mimari Desenler: Repository Pattern ve UnitOfWork Pattern.
-
-## Kullanılan Teknolojiler ve Mimari
-- Backend: ASP.NET Core
+- Frontend: cshtml 
 - Veritabanı: SQLite
 - ORM: Entity Framework Core
 - Mimari Desenler: Repository Pattern ve UnitOfWork Pattern
